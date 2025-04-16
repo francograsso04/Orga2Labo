@@ -1,0 +1,75 @@
+Ejercicio 3:
+
+La diferencia entre x y p, es que x guarda un numero int en una posicion de memoria y p es el puntero 
+que "señala" a la posicion de memoria de la variable x
+
+x es la variable que guarda un int y &x es la direccion de memoria donde se encuentra ese numero.
+
+p es una variable y p* es un puntero p.
+
+
+Ejercicio 5:
+
+No hay un porque, sino que bueno.
+El puntero x tiene tipo uint8 (0-255) y el puntero y tiene tipo int_8 (-177,177)creo xd.
+Obvio que esto da segmentation fault porque 0xF6 es negativo en el tipo int8.
+Osea es un puntero a lo negativo, no tiene sentido.
+
+
+Ejercicio 6:
+
+int main() {
+
+    // Array sin signo que acepta hasta 255
+    uint8_t memoria[9] = {255, 31, 42, 0, 55, 67, 128, 127, 157};
+
+    // x apunta al primer byte (255)
+    uint8_t *x = &memoria[0];
+
+    // y apunta al séptimo byte, pero lo queremos interpretar como **con signo**
+    int8_t *y = (int8_t*) &memoria[6]; // memoria[6] = 128 → -128 en int8_t
+
+    printf("Dir de x: %p Valor: %u\n", (void*) x, *x);
+    printf("Dir de y: %p Valor: %d\n", (void*) y, *y);
+
+    return 0;
+
+}
+
+Ejercicio 8
+
+A ver, str1 es un puntero que apunta a una memoria constante char.
+
+"Hola" en si es un literal de  string. Es un puntero que apunta a la direccion de la string.
+Entonces str1 es un puntero que apunta a la direccion de memoria del byte H.
+
+Luego, str2 es un array y tambien modoficable, pero tambien lo podemos pensar como el puntero a la H cuando llamamos a str2.
+
+Hay diferencias.. str1 apunta a memoria estatica y readonly; str2 es propia y editable
+
+
+Ejercicio 9.
+Hay que hacer un array tipo str2[] = {'a'} -> str2[0] = 'A'.
+
+
+Ejercicio 19.
+
+# include <stdio.h>
+
+int main() {
+    int matrix[3][4] = {
+    {1, 2, 3, 4},
+    {5, 6, 7, 8},
+    {9, 10, 11, 12}
+    };
+
+    // p apunta al int en la fila 0, columna 0
+    int *p = &matrix[0][0];
+
+    // ¿qu ́e es reshape?
+    int (*reshape)[2] = (int (*)[2]) p;
+
+    printf("%d\n", p[3]); // Qu ́e imprime esta l ́ınea?
+    printf("%d\n", reshape[1][1]); // Qu ́e imprime esta l ́ınea?
+    return 0;
+}
